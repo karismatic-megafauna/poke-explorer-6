@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import pokemonMetadata from 'pokemon-metadata';
 
@@ -11,7 +10,7 @@ class App extends Component {
       <div>
         { squirtle.name }
         { squirtle.id }
-        <img src={ squirtle.sprites.front_shiny }/>
+        <img src={ squirtle.sprites.front_shiny } alt={squirtle.name}/>
       </div>
     );
   }
