@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
 import './App.css';
 import pokemonMetadata from 'pokemon-metadata';
+import { Card } from 'antd';
 
 class App extends Component {
   render() {
-    console.log(pokemonMetadata)
-    const squirtle = pokemonMetadata.squirtle;
+    const pokekeys = Object.keys(pokemonMetadata);
     return (
       <div>
-        { squirtle.name }
-        { squirtle.id }
-        <img src={ squirtle.sprites.front_shiny } alt={squirtle.name}/>
+        { pokekeys.map(function(element) {
+          const pokemon = pokemonMetadata[element];
+          return (
+            <PokeCard name={pokemon.name} id={pokemon.id} imgSrc={pokemon.sprites.front_default}/>
+          )
+        })}
+
       </div>
     );
   }
 }
-
-export default App;
+class PokeCard extends Component {
+  render() {
+    const { name, id, imgSrc } = this.props;
+    return (
+      <Card key={ id } title={ name } extra={ id } style={{ width: 300 }}>
+        <img src={ imgSrc } alt={ name }/>
+      </Card>
+    )}
+  }
+  export default App;
